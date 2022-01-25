@@ -1,0 +1,12 @@
+﻿--USE WIIZIAUDITORDB_KRAFT
+SELECT *
+
+     FROM ESocialEventosS3000 s3000
+    
+    
+WHERE s3000.EmpresaId = 'fdc00d04-1dec-43f5-8acf-3e5ff13c5200' -- KRAFT	26189530000113	UNIMED CURVELO COOPERATIVA DE TRABALHO MEDICO LTDA
+    --WHERE s3000.EmpresaId = '19e3ae60-c70c-4355-b4a6-5eaafc88e995' -- CARUARU
+  --AND s3000.PeriodoApuracao >= '2018-05-01' AND s3000.PeriodoApuracao < '2018-06-01'
+  AND s3000.CpfTrabalhador IN ('03150002605', '04432562684', '39747786672', '48447498620')
+  --  AND s3000.DataProcessamento < '2018-12-01'
+    AND s3000.EventoExcluido = 'S-1200'
