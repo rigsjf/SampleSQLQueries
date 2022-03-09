@@ -1,0 +1,12 @@
+﻿SELECT crcie.DataInicial,ercie.NumeroInscricao,lrcie.CodigoLotacao,rrcie.CategoriaTrabalhadorESocialId,err.CodigoRubrica,err.DescricaoRubrica,
+  err.NaturezaRubricaESocialId,err.TipoRubricaESocialId,err.CodigoIncidenciaTribRubricaPrevSocialESocialId,rrcie.FinanciamentoAposentadoriaEspecialTempoContribESocialId,SUM(crrcie.ValorRubrica)
+  FROM CorposRemuneracaoRecalculoCreditoInssESocial crrcie
+  JOIN RemuneracoesRecalculoCreditoInssESocial rrcie ON crrcie.RemuneracaoRecalculoCreditoInssESocialId = rrcie.RemuneracaoRecalculoCreditoInssESocialId
+JOIN LotacoesRecalculoCreditoInssESocial lrcie ON rrcie.LotacaoRecalculoCreditoInssESocialId = lrcie.LotacaoRecalculoCreditoInssESocialId
+  JOIN EstabelecimentosRecalculoCreditoInssESocial ercie ON lrcie.EstabelecimentoRecalculoCreditoInssESocialId = ercie.EstabelecimentoRecalculoCreditoInssESocialId
+  JOIN CabecalhosRecalculoCreditoInssESocial crcie ON ercie.CabecalhoRecalculoCreditoInssESocialId = crcie.CabecalhoRecalculoCreditoInssESocialId
+  JOIN ESocialRubricasRetificadas err ON crrcie.ESocialRubricaRetificadaId = err.ESocialRubricaRetificadaId
+WHERE crcie.EmpresaId = '6d43803b-78a8-4fd4-8d62-b077d1553dbe' -- AUDITORTESTE 	33331919000117	POSTO DE GASOLINA SUL AMERICA LTDA
+AND crcie.DataInicial = '2019-04-01'
+  GROUP BY crcie.DataInicial,ercie.NumeroInscricao,lrcie.CodigoLotacao,rrcie.CategoriaTrabalhadorESocialId,err.CodigoRubrica,err.DescricaoRubrica,
+  err.NaturezaRubricaESocialId,err.TipoRubricaESocialId,err.CodigoIncidenciaTribRubricaPrevSocialESocialId,rrcie.FinanciamentoAposentadoriaEspecialTempoContribESocialId
